@@ -48,6 +48,8 @@ public:
     void afficherParCategorie(const string &categorie);
 
     void supprimerLivre(const string &code);
+
+    Livre* trouverLivre(const string &code);
 };
 
 

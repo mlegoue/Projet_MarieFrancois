@@ -49,6 +49,13 @@ void Bibliotheque::supprimerLivre(const string &c) {
     nbLivre = nbLivre - 1;
 }
 
+Livre* Bibliotheque::trouverLivre(const string &c) {
+    for (int i = 0; i < nbLivre; ++i) {
+        if (c == ((*tab[i]).getCode())) {
+            return tab[i];
+        }
+    }
+}
 
 
 

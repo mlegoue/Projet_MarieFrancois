@@ -24,9 +24,20 @@ int main() {
     biblio.ajoutLivre(&roman);
     biblio.ajoutLivre(&theatre);
     biblio.ajoutLivre(&album);
-    biblio.supprimerLivre("4567");
     biblio.afficherLivres();
     Adherent moi("Le Goué", "Marie", "Marseille", 1234, biblio, 4);
     cout << moi.getBibliotheque().getNom() << endl;
     cout << album.getProprietaire().getNom() << endl;
+    moi.emprunter("0000");
+    moi.emprunter("2345");
+    moi.emprunter("3456");
+    moi.emprunter("5678");
+    moi.emprunter("4567");
+    moi.afficherLivres();
+    Adherent foder("Oder", "François", "Marseille", 2345, biblio, 2);
+    foder.emprunter("0000");
+    moi.rendre("0000");
+    moi.afficherLivres();
+    foder.emprunter("0000");
+    foder.afficherLivres();
 }

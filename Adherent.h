@@ -16,7 +16,7 @@ private:
     Bibliotheque bibliotheque;
     int nbEmprunts;
     Livre* tab[100];
-    int nbLivre;
+    int nbLivres;
 
 public:
     Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque &bibliotheque, int nbEmprunts, Livre* tab[100] = {
@@ -70,6 +70,11 @@ public:
         this->nbEmprunts = nbEmprunts;
     }
 
+    void emprunter(const string &code);
+
+    void afficherLivres();
+
+    void rendre(const string &code);
 
 };
 
