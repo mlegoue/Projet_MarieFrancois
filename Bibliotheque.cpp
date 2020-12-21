@@ -12,6 +12,7 @@ Bibliotheque::Bibliotheque(const string& n, const string& a, const string& c, Li
 }
 
 void Bibliotheque::ajoutLivre(Livre* livre) {
+    cout << "yo" << endl;
     tab[nbLivre] = livre;
     nbLivre = nbLivre + 1;
 }
@@ -19,7 +20,7 @@ void Bibliotheque::ajoutLivre(Livre* livre) {
 void Bibliotheque::afficherLivres() {
     for(int i = 0; i < nbLivre; ++i)
     {
-        std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << std::endl;
+        std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << " Etat : " << (*tab[i]).getEtat() << std::endl;
 
     }
 }
@@ -53,6 +54,37 @@ Livre* Bibliotheque::trouverLivre(const string &c) {
     for (int i = 0; i < nbLivre; ++i) {
         if (c == ((*tab[i]).getCode())) {
             return tab[i];
+        }
+    }
+}
+
+Livre* Bibliotheque::trouverLivre(int isbn) {
+    for (int i = 0; i < nbLivre; ++i) {
+        if (isbn == ((*tab[i]).getISBN())) {
+            return tab[i];
+        }
+    }
+}
+
+void Bibliotheque::emprunter(int i, Bibliotheque* biblio) {
+    Livre* livre = biblio->trouverLivre(i);
+    if (livre->getEtat() == "Libre") {
+        biblio->supprimerLivre(livre->getCode());
+        this->ajoutLivre(livre);
+        livre->setEtat("Emprunté");
+    }
+    else {
+        cout << "Ce livre est emprunté par un adhérent !" << endl;
+    }
+}
+
+void Bibliotheque::rendre() {
+    for (int i = 0; i < nbLivre; ++i) {
+        if ((*tab[i]).getEtat() == "Emprunté") {
+            (tab[i])->setEtat("Libre");
+            Bibliotheque proprio = (*tab[i]).getProprietaire();
+            proprio.ajoutLivre(tab[i]);
+            this->supprimerLivre((*tab[i]).getCode());
         }
     }
 }

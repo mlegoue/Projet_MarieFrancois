@@ -50,6 +50,12 @@ public:
     void supprimerLivre(const string &code);
 
     Livre* trouverLivre(const string &code);
+
+    Livre* trouverLivre(int ISBN);
+
+    void emprunter(int ISBN, Bibliotheque* bibliotheque);
+
+    void rendre();
 };
 
 

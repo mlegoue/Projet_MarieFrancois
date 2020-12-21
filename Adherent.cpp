@@ -35,7 +35,12 @@ void Adherent::rendre(const string& c){
     for (int i = 0; i < nbLivres; ++i) {
         if (!trouve){
             if (c == ((*tab[i]).getCode())){
-                tab[i]->setEtat("Libre");
+                if (this->getBibliotheque().getCode() == livre->getProprietaire().getCode()) {
+                    tab[i]->setEtat("Libre");
+                }
+                else {
+                    tab[i]->setEtat("Emprunté");
+                }
                 tab[i] = tab[i+1];
                 trouve = true;
             }
