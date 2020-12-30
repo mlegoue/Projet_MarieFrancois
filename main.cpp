@@ -9,6 +9,7 @@ using namespace std;
 #include "PieceTheatre.h"
 #include "Album.h"
 #include "Adherent.h"
+#include "EM.cpp"
 
 Bibliotheque* listeBiblio[100];
 int nbBiblio = 0;
@@ -27,7 +28,8 @@ void creerLivre(Bibliotheque* biblio);
 int main() {
     cout << endl;
     cout << "Bienvenue sur le gestionnaire de bibliothèques" << endl;
-    load_fixtures();
+    // load_fixtures();
+    load(listeBiblio, &nbBiblio, listeAdherent, &nbAdherent);
     menu();
     return 0;
 }
