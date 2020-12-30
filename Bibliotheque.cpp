@@ -24,8 +24,7 @@ void Bibliotheque::ajoutLivre(Livre* livre) {
 void Bibliotheque::afficherLivres() {
     for(int i = 0; i < nbLivre; ++i)
     {
-        std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << " Etat : " << (*tab[i]).getEtat() << std::endl;
-
+        cout << "Code = " << (*tab[i]).getCode() << " ; Titre = " << (*tab[i]).getTitre() << " ; Auteur = " << (*tab[i]).getAuteur() << " ; Éditeur = " << (*tab[i]).getEditeur() << " ; ISBN = " << (*tab[i]).getISBN() << " ; Public concerné = " << (*tab[i]).getPublicConcerne() << " ; État = " << (*tab[i]).getEtat() << endl;
     }
 }
 
@@ -89,8 +88,8 @@ void Bibliotheque::rendre() {
     for (int i = 0; i < nbLivre; ++i) {
         if ((*tab[i]).getEtat() == "Emprunté") {
             (tab[i])->setEtat("Libre");
-            Bibliotheque proprio = (*tab[i]).getProprietaire();
-            proprio.ajoutLivre(tab[i]);
+            Bibliotheque* proprio = (*tab[i]).getProprietaire();
+            proprio->ajoutLivre(tab[i]);
             this->supprimerLivre((*tab[i]).getCode());
         }
     }
@@ -104,4 +103,8 @@ void Bibliotheque::changeTab(int newL){
     lengthL = newL;
     delete tab;
     tab = newTab;
+}
+
+void Bibliotheque::affiche(){
+    cout << "Nom = " << nom << " ; Prénom = "  << adresse << " ; Code = "<< code << endl;
 }

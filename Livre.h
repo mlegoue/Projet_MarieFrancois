@@ -22,7 +22,7 @@ private:
 
 
 public:
-    Livre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire);
+    Livre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, Bibliotheque* proprietaire);
 
     string getCode() {
         return code;
@@ -52,11 +52,9 @@ public:
         return etat;
     }
 
-    Bibliotheque getProprietaire() {
+    Bibliotheque* getProprietaire() {
         return proprietaire;
     }
-
-
 
     void setCode(string code) {
         this->code = code;
@@ -86,7 +84,7 @@ public:
         this->etat = etat;
     }
 
-    void setProprietaire(const Bibliotheque &proprietaire) {
+    void setProprietaire(Bibliotheque* proprietaire) {
         this->proprietaire = proprietaire;
     }
 
@@ -94,7 +92,9 @@ public:
         return "Livre";
     }
 
+    virtual void affiche();
 
+    virtual string getAttributSpe() = 0;
 
 };
 

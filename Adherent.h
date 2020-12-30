@@ -19,7 +19,7 @@ private:
     Livre** tab;
 
 public:
-    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque* bibliotheque, int nbEmprunts);
+    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, Bibliotheque* bibliotheque, int nbEmprunts);
 
     string getNom() {
         return nom;
@@ -37,7 +37,7 @@ public:
         return this->numero;
     }
 
-    Bibliotheque getBibliotheque() {
+    Bibliotheque* getBibliotheque() {
         return bibliotheque;
     }
 
@@ -61,7 +61,7 @@ public:
         this->numero = numero;
     }
 
-    void setBibliotheque(Bibliotheque bibliotheque) {
+    void setBibliotheque(Bibliotheque* bibliotheque) {
         this->bibliotheque = bibliotheque;
     }
 
@@ -74,6 +74,8 @@ public:
     void afficherLivres();
 
     void rendre(const string &code);
+
+    void affiche();
 
 };
 

@@ -31,6 +31,14 @@ public:
         return code;
     }
 
+    Livre** getLivres() {
+        return tab;
+    }
+
+    int getNbLivre() {
+        return nbLivre;
+    }
+
     void setNom(string nom) {
         this->nom = nom;
     }
@@ -58,6 +66,8 @@ public:
     void emprunter(int ISBN, Bibliotheque* bibliotheque);
 
     void rendre();
+
+    void affiche();
 };
 
 

@@ -10,7 +10,7 @@ private :
     string illustration;
 
 public:
-    Album(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire, const string &illustration);
+    Album(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, Bibliotheque* proprietaire, const string &illustration);
 
 
     string getIllustration() {
@@ -23,6 +23,12 @@ public:
 
     string getCategorie() {
         return "Album";
+    }
+
+    void affiche();
+
+    string getAttributSpe() {
+        return illustration;
     }
 
 };

@@ -2,7 +2,7 @@
 #include "Bibliotheque.h"
 #include "Livre.h"
 
-Adherent::Adherent(const string& n, const string& p, const string& a,  int num, const Bibliotheque* b,  int nb) {
+Adherent::Adherent(const string& n, const string& p, const string& a,  int num, Bibliotheque* b,  int nb) {
     nom = n;
     prenom = p;
     adresse = a;
@@ -14,7 +14,7 @@ Adherent::Adherent(const string& n, const string& p, const string& a,  int num, 
 }
 
 void Adherent::emprunter(const string& c){
-    Livre* livre = this->getBibliotheque().trouverLivre(c);
+    Livre* livre = this->getBibliotheque()->trouverLivre(c);
     if (livre->getEtat() == "Prêté"){
         cout << "Ce livre est déjà emprunté !" << endl;
     }
@@ -31,12 +31,12 @@ void Adherent::emprunter(const string& c){
 };
 
 void Adherent::rendre(const string& c){
-    Livre* livre = this->getBibliotheque().trouverLivre(c);
+    Livre* livre = this->getBibliotheque()->trouverLivre(c);
     bool trouve = false;
     for (int i = 0; i < nbLivres; ++i) {
         if (!trouve){
             if (c == ((*tab[i]).getCode())){
-                if (this->getBibliotheque().getCode() == livre->getProprietaire().getCode()) {
+                if (this->getBibliotheque()->getCode() == livre->getProprietaire()->getCode()) {
                     tab[i]->setEtat("Libre");
                 }
                 else {
@@ -59,4 +59,8 @@ void Adherent::afficherLivres() {
         std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << std::endl;
 
     }
+}
+
+void Adherent::affiche() {
+    cout << "Nom = " << nom << " ; Prénom = " << prenom << " ; Adresse = " << adresse << " ; Numéro = " << numero << " ; Bibliothèque = " << bibliotheque->getNom() << " ; Nombre d'emprunts = " << nbEmprunts << endl;
 }

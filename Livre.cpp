@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Livre::Livre(const string& c, const string& t, const string& a,  const string& e,  int i,  const string& p,  const string& et, const Bibliotheque* b) {
+Livre::Livre(const string& c, const string& t, const string& a,  const string& e,  int i,  const string& p,  const string& et, Bibliotheque* b) {
     code = c;
     titre = t;
     auteur = a;
@@ -13,4 +13,8 @@ Livre::Livre(const string& c, const string& t, const string& a,  const string& e
     publicconcerne = p;
     etat = et;
     proprietaire = b;
+}
+
+void Livre::affiche() {
+    cout << "Code = " << code << " ; Titre = " << titre << " ; Auteur = " << auteur << " ; Éditeur = " << editeur << " ; ISBN = " << ISBN << " ; Public concerné = " << publicconcerne << " ; État = " << etat << " ; Propriétaire = " << proprietaire->getNom() << endl;
 }

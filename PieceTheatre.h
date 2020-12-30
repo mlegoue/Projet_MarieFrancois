@@ -7,22 +7,28 @@ using namespace std;
 
 class PieceTheatre : public Livre {
 private :
-    int siecle;
+    string siecle;
 
 public:
-    PieceTheatre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire, int siecle);
+    PieceTheatre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, Bibliotheque* proprietaire, const string &siecle);
 
 
-    int getGenre() {
+    string getSiecle() {
         return siecle;
     }
 
-    void setGenre(int siecle) {
+    void setSiecle(const string& siecle) {
         this->siecle = siecle;
     }
 
     string getCategorie() {
         return "Pièce de théatre";
+    }
+
+    void affiche();
+
+    string getAttributSpe() {
+        return siecle;
     }
 
 };
