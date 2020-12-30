@@ -4,15 +4,20 @@
 #include <iostream>
 using namespace std;
 
-Bibliotheque::Bibliotheque(const string& n, const string& a, const string& c, Livre* tab[100] ) {
+Bibliotheque::Bibliotheque(const string& n, const string& a, const string& c) {
     nom = n;
     adresse = a;
     code = c;
     nbLivre = 0;
+    lengthL = 10;
+    tab = new Livre*[10];
 }
 
 void Bibliotheque::ajoutLivre(Livre* livre) {
     cout << "yo" << endl;
+    if(nbLivre >= lengthL){
+        this->changeTab(lengthL + 10);
+    }
     tab[nbLivre] = livre;
     nbLivre = nbLivre + 1;
 }
@@ -48,6 +53,9 @@ void Bibliotheque::supprimerLivre(const string &c) {
         }
     }
     nbLivre = nbLivre - 1;
+    if(nbLivre <= lengthL - 10){
+        this->changeTab(lengthL - 10);
+    }
 }
 
 Livre* Bibliotheque::trouverLivre(const string &c) {
@@ -89,5 +97,12 @@ void Bibliotheque::rendre() {
     }
 }
 
-
-
+void Bibliotheque::changeTab(int newL){
+    auto** newTab = new Livre*[newL];
+    for(int i=0; i<nbLivre; i++){
+        newTab[i] = tab[i];
+    }
+    lengthL = newL;
+    delete tab;
+    tab = newTab;
+}

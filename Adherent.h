@@ -15,12 +15,11 @@ private:
     int numero;
     Bibliotheque bibliotheque;
     int nbEmprunts;
-    Livre* tab[100];
     int nbLivres;
+    Livre** tab;
 
 public:
-    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque &bibliotheque, int nbEmprunts, Livre* tab[100] = {
-            nullptr});
+    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque &bibliotheque, int nbEmprunts);
 
     string getNom() {
         return nom;

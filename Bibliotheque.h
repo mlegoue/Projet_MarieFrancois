@@ -11,11 +11,13 @@ private:
     string nom;
     string adresse;
     string code;
-    Livre* tab[100];
+    Livre** tab;
     int nbLivre;
+    int lengthL;
+    void changeTab(int newL);
 
 public:
-    Bibliotheque(const string &nom = "Bibliothèque", const string &adresse = "", const string &code = "000", Livre* tab[100] = {nullptr});
+    Bibliotheque(const string &nom = "Bibliothèque", const string &adresse = "", const string &code = "000");
 
     string getNom() {
         return nom;
