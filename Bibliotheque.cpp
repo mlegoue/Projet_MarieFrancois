@@ -14,7 +14,6 @@ Bibliotheque::Bibliotheque(const string& n, const string& a, const string& c) {
 }
 
 void Bibliotheque::ajoutLivre(Livre* livre) {
-    cout << "yo" << endl;
     if(nbLivre >= lengthL){
         this->changeTab(lengthL + 10);
     }
