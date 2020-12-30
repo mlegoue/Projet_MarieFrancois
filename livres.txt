@@ -1,0 +1,50 @@
+BandeDessinee
+0000
+Les aventures de Tintin
+Hergé
+Le petit Vingtième
+0000
+Tout public
+Emprunté
+13001
+Hergé
+RecueilPoesie
+2345
+Recueil
+Baudelaire
+Jsp
+2345
+Adulte
+Libre
+13001
+vers
+Roman
+3456
+Roman
+Qqn
+Jsp
+3456
+Adulte
+Libre
+13001
+Policier
+PieceTheatre
+4567
+Theatre
+Qqn d'autre
+Jsp
+4567
+Jeunesse
+Libre
+13013
+20
+Album
+5678
+Album
+Un random
+Jsp
+4567
+Ados
+Libre
+13013
+Photo
