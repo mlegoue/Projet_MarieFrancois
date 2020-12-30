@@ -72,7 +72,6 @@ void load_fixtures() {
     nbAdherent = nbAdherent + 1;
     listeAdherent[nbAdherent] = &foder;
     nbAdherent = nbAdherent + 1;
-    cout << biblio->getLivres()[0]->getAttributSpe() << endl;
 }
 
 void menu(){
@@ -95,6 +94,7 @@ void menu(){
             menuAdherent();
             break;
         case 3:
+            menuCreer();
             break;
         case 1001:
             break;
@@ -210,35 +210,35 @@ void creerLivre(Bibliotheque* bibliotheque){
         string illustration;
         cout << "Illustration :" << endl;
         cin >> illustration;
-        Album album(code, titre, auteur, editeur, ISBN, publicconcerne, "libre", bibliotheque, illustration);
+        Album album(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, illustration);
         bibliotheque->ajoutLivre(&album);
     }
     else if (choix == 2){
         string dessinateur;
         cout << "Dessinateur :" << endl;
         cin >> dessinateur;
-        BandeDessinee bd(code, titre, auteur, editeur, ISBN, publicconcerne, "libre", bibliotheque, dessinateur);
+        BandeDessinee bd(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, dessinateur);
         bibliotheque->ajoutLivre(&bd);
     }
     else if (choix == 3) {
         string siecle;
         cout << "Siècle :" << endl;
         cin >> siecle;
-        PieceTheatre pt(code, titre, auteur, editeur, ISBN, publicconcerne, "libre", bibliotheque, siecle);
+        PieceTheatre pt(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, siecle);
         bibliotheque->ajoutLivre(&pt);
     }
     else if (choix == 4) {
         string indicateur;
         cout << "Indicateur :" << endl;
         cin >> indicateur;
-        RecueilPoesie rp(code, titre, auteur, editeur, ISBN, publicconcerne, "libre", bibliotheque, indicateur);
+        RecueilPoesie rp(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, indicateur);
         bibliotheque->ajoutLivre(&rp);
     }
     else if (choix == 5) {
         string genre;
         cout << "Genre :" << endl;
         cin >> genre;
-        Roman rom(code, titre, auteur, editeur, ISBN, publicconcerne, "libre", bibliotheque, genre);
+        Roman rom(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, genre);
         bibliotheque->ajoutLivre(&rom);
     }
     else {
@@ -256,10 +256,89 @@ void menuAdherent(){
     cout << endl;
     cout << "=== Que voulez-vous faire ? ===" << endl;
     cout << "0) Afficher" << endl;
-    cout << "1) Ajouter un livre" << endl;
-    cout << "2) Supprimer un livre" << endl;
-    cout << "3) Emprunter à une autre bibliothèque" << endl;
-    cout << "4) Rendre les livres" << endl;
+    cout << "1) Emprunter un livre" << endl;
+    cout << "2) Rendre un livre" << endl;
 
+    cout << "Votre choix : ";
+    cin >> choix;
+
+    switch(choix){
+        case 0:
+            adherent->affiche();
+            adherent->afficherLivres();
+            menu();
+            break;
+        case 1: {
+            cout << endl;
+            cout << "=== Quel livre voulez-vous emprunter ? ===" << endl;
+            auto *livre = choose<Livre>(adherent->getBibliotheque()->getLivres(), adherent->getBibliotheque()->getNbLivre());
+            adherent->emprunter(livre->getCode());
+            menu();
+            break;
+        }
+        case 2: {
+            cout << endl;
+            cout << "=== Quel livre voulez-vous rendre ? ===" << endl;
+            auto *livre = choose<Livre>(adherent->getBibliotheque()->getLivres(), adherent->getBibliotheque()->getNbLivre());
+            adherent->rendre(livre->getCode());
+            menu();
+            break;
+        }
+        case 1001:
+            break;
+        default:
+            cout << endl <<  "Choix invalide." << endl;
+    }
+}
+
+void menuCreer(){
+    int choix = 0;
+    cout << endl;
+    cout << "=== Que voulez-vous créer ? ===" << endl;
+    cout << "1) Bibliothèque" << endl;
+    cout << "2) Adhérent" << endl;
+    cout << "Votre choix :" << endl;
+    cin >> choix;
+    if (choix == 1){
+        string nom;
+        string adresse;
+        string code;
+        cout << "Nom :" << endl;
+        cin >> nom;
+        cout << "Adresse :" << endl;
+        cin >> adresse;
+        cout << "Code :" << endl;
+        cin >> code;
+        Bibliotheque bibli(nom, adresse, code);
+        listeBiblio[nbBiblio] = &bibli;
+        nbBiblio = nbBiblio + 1;
+    }
+    else if (choix == 2){
+        string nom;
+        string prenom;
+        string adresse;
+        int numero;
+        Bibliotheque* b;
+        int nbEmprunt;
+        cout << "Nom :" << endl;
+        cin >> nom;
+        cout << "Prénom :" << endl;
+        cin >> prenom;
+        cout << "Adresse :" << endl;
+        cin >> adresse;
+        cout << "Numéro d'adhérent :" << endl;
+        cin >> numero;
+        cout << "Nombre d'emprunts :" << endl;
+        cin >> nbEmprunt;
+        cout << "Danq quelle bibliothèque est-il inscrit ?" << endl;
+        auto* bibliotheque = choose<Bibliotheque>(listeBiblio, nbBiblio);
+        Adherent adherent(nom, prenom, adresse, numero, bibliotheque, nbEmprunt);
+        listeAdherent[nbAdherent] = &adherent;
+        nbAdherent = nbAdherent + 1;
+    }
+    else {
+        cout << endl << "Choix invalide." << endl;
+    }
+    menu();
 
 }

@@ -24,7 +24,7 @@ void Bibliotheque::ajoutLivre(Livre* livre) {
 void Bibliotheque::afficherLivres() {
     for(int i = 0; i < nbLivre; ++i)
     {
-        cout << "Code = " << (*tab[i]).getCode() << " ; Titre = " << (*tab[i]).getTitre() << " ; Auteur = " << (*tab[i]).getAuteur() << " ; Éditeur = " << (*tab[i]).getEditeur() << " ; ISBN = " << (*tab[i]).getISBN() << " ; Public concerné = " << (*tab[i]).getPublicConcerne() << " ; État = " << (*tab[i]).getEtat() << endl;
+        (*tab[i]).affiche();
     }
 }
 

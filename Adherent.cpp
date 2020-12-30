@@ -56,8 +56,7 @@ void Adherent::rendre(const string& c){
 void Adherent::afficherLivres() {
     for(int i = 0; i < nbLivres; ++i)
     {
-        std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << std::endl;
-
+        (*tab[i]).affiche();
     }
 }
 
