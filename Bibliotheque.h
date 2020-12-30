@@ -41,6 +41,8 @@ public:
         this->code = code;
     }
 
+    void affiche();
+
     void ajoutLivre(Livre* livre);
 
     void afficherLivres();

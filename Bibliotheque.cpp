@@ -11,8 +11,11 @@ Bibliotheque::Bibliotheque(const string& n, const string& a, const string& c, Li
     nbLivre = 0;
 }
 
+void Bibliotheque::affiche() {
+    cout << nom << " " << adresse << " " << code << endl;
+}
+
 void Bibliotheque::ajoutLivre(Livre* livre) {
-    cout << "yo" << endl;
     tab[nbLivre] = livre;
     nbLivre = nbLivre + 1;
 }
