@@ -10,7 +10,7 @@ private :
     string dessinateur;
 
 public:
-    BandeDessinee(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque &proprietaire, const string &dessinateur);
+    BandeDessinee(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire, const string &dessinateur);
 
 
     string getDessinateur() {

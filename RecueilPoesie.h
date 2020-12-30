@@ -10,7 +10,7 @@ private :
     string indicateur;
 
 public:
-    RecueilPoesie(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque &proprietaire, const string &indicteur);
+    RecueilPoesie(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire, const string &indicteur);
 
 
     string getIndicateur() {

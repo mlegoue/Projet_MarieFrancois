@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-Livre::Livre(const string& c, const string& t, const string& a,  const string& e,  int i,  const string& p,  const string& et, const Bibliotheque& b) {
+Livre::Livre(const string& c, const string& t, const string& a,  const string& e,  int i,  const string& p,  const string& et, const Bibliotheque* b) {
     code = c;
     titre = t;
     auteur = a;

@@ -13,13 +13,13 @@ private:
     string prenom;
     string adresse;
     int numero;
-    Bibliotheque bibliotheque;
+    Bibliotheque* bibliotheque;
     int nbEmprunts;
     int nbLivres;
     Livre** tab;
 
 public:
-    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque &bibliotheque, int nbEmprunts);
+    Adherent(const string &nom, const string &prenom, const string &adresse, int numero, const Bibliotheque* bibliotheque, int nbEmprunts);
 
     string getNom() {
         return nom;

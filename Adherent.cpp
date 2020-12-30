@@ -2,7 +2,7 @@
 #include "Bibliotheque.h"
 #include "Livre.h"
 
-Adherent::Adherent(const string& n, const string& p, const string& a,  int num, const Bibliotheque& b,  int nb) {
+Adherent::Adherent(const string& n, const string& p, const string& a,  int num, const Bibliotheque* b,  int nb) {
     nom = n;
     prenom = p;
     adresse = a;

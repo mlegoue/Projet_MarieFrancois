@@ -10,7 +10,7 @@ private :
     int siecle;
 
 public:
-    PieceTheatre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque &proprietaire, int siecle);
+    PieceTheatre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire, int siecle);
 
 
     int getGenre() {

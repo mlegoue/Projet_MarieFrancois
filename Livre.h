@@ -18,11 +18,11 @@ private:
     int ISBN;
     string publicconcerne; //public est reservé par C++
     string etat;
-    Bibliotheque proprietaire;
+    Bibliotheque* proprietaire;
 
 
 public:
-    Livre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque &proprietaire);
+    Livre(const string &code, const string &titre, const string &auteur, const string &editeur, int ISBN, const string &publicconcerne, const string &etat, const Bibliotheque* proprietaire);
 
     string getCode() {
         return code;
