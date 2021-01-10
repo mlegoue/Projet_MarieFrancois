@@ -62,11 +62,11 @@ void load(Bibliotheque** BIBLIO, int* nbBiblio, Adherent** ADHER, int* nbAdher){
         getline(LfileR, Lsupp);
         Bibliotheque* biblio = mapB.lower_bound(Lbiblio)->second;
         int isbn = stoi(Lisbn);
-        if(Ltype == "BandeDessinee"){
+        if(Ltype == "Bande Dessinée"){
             auto* bd = new BandeDessinee(Lcode, Lname, Lauthor, Leditor, isbn, Lp, Lstate, biblio, Lsupp);
             mapL.insert({Lcode, bd});
         }
-        else if(Ltype == "RecueilPoesie"){
+        else if(Ltype == "Recueil de Poésie"){
             auto* rp = new RecueilPoesie(Lcode, Lname, Lauthor, Leditor, isbn, Lp, Lstate, biblio, Lsupp);
             mapL.insert({Lcode, rp});
         }
@@ -78,7 +78,7 @@ void load(Bibliotheque** BIBLIO, int* nbBiblio, Adherent** ADHER, int* nbAdher){
             auto* a = new Album(Lcode, Lname, Lauthor, Leditor, isbn, Lp, Lstate, biblio, Lsupp);
             mapL.insert({Lcode, a});
         }
-        else if(Ltype == "PieceTheatre"){
+        else if(Ltype == "Pièce de théatre"){
             auto* pt = new PieceTheatre(Lcode, Lname, Lauthor, Leditor, isbn, Lp, Lstate, biblio, Lsupp);
             mapL.insert({Lcode, pt});
         }
@@ -115,7 +115,7 @@ void load(Bibliotheque** BIBLIO, int* nbBiblio, Adherent** ADHER, int* nbAdher){
         getline(AfileR, AnbE);
         getline(AfileR, AnbL);
         Bibliotheque* biblio = mapB.lower_bound(Abiblio)->second;
-        auto* a = new Adherent(AfirstName, AlastName, Aadress, stoi(Anum), biblio, stoi(AnbE));
+        auto* a = new Adherent(AlastName, AfirstName, Aadress, stoi(Anum), biblio, stoi(AnbE));
         mapA.insert({Anum, a});
         int A_nbL = stoi(AnbL);
         nbLOfA.insert({Anum, A_nbL});
@@ -146,4 +146,68 @@ void load(Bibliotheque** BIBLIO, int* nbBiblio, Adherent** ADHER, int* nbAdher){
     *nbAdher = nbA;
     cout << "Les livres ont rejoint les adhérents" << endl;
     cout << "Toutes les données sont chargées" << endl;
+}
+
+void save(Bibliotheque** BIBLIO, const int* nbBiblio, Adherent** ADHER, const int* nbAdher){
+    cout << "Enregistrement dans les fichiers : " << Afile_name << ' ' << Bfile_name << ' ' << Lfile_name << endl;
+    ofstream AfileW (Afile_name);
+    for(int i = 0; i<*nbAdher; i++){
+        Adherent* adher1 = ADHER[i];
+        AfileW << adher1->getNom() << endl;
+        AfileW << adher1->getPrenom() << endl;
+        AfileW << adher1->getAdresse() << endl;
+        AfileW << adher1->getNumero() << endl;
+        AfileW << adher1->getBibliotheque()->getCode() << endl;
+        AfileW << adher1->getNbEmprunts() << endl;
+        Livre** tab = adher1->getEmprunts();
+        int tablength = adher1->getEmpruntsLength();
+        AfileW << tablength << endl;
+        for(int j = 0; j<tablength; j++){
+            AfileW << tab[j]->getCode() << endl;
+        }
+    }
+    cout << *nbAdher << " adhérents enregistrés" << endl;
+    int nbLivres = 0;
+    ofstream BfileW (Bfile_name);
+    for(int i = 0; i<*nbBiblio; i++){
+        Bibliotheque* biblio1 = BIBLIO[i];
+        BfileW << biblio1->getNom() << endl;
+        BfileW << biblio1->getAdresse() << endl;
+        BfileW << biblio1->getCode() << endl;
+        Livre** tab = biblio1->getLivres();
+        int tabLength = biblio1->getNbLivre();
+        nbLivres += tabLength;
+        BfileW << tabLength << endl;
+        for(int j = 0; j<tabLength; j++){
+            BfileW << tab[j]->getCode() << endl;
+        }
+    }
+    cout << *nbBiblio << " bibliothèques enregistrées" << endl;
+    Livre* LIVRES[nbLivres];
+    int ind = 0;
+    for(int i = 0; i<*nbBiblio; i++){
+        Bibliotheque* biblio1 = BIBLIO[i];
+        Livre** tab = biblio1->getLivres();
+        int tabLength = biblio1->getNbLivre();
+        for(int j = 0; j<tabLength; j++){
+            LIVRES[ind] = tab[j];
+            ind++;
+        }
+    }
+    ofstream LfileW (Lfile_name);
+    for(int i = 0; i<nbLivres; i++){
+        Livre* livre1 = LIVRES[i];
+        LfileW << livre1->getCategorie() << endl;
+        LfileW << livre1->getCode() << endl;
+        LfileW << livre1->getTitre() << endl;
+        LfileW << livre1->getAuteur() << endl;
+        LfileW << livre1->getEditeur() << endl;
+        LfileW << livre1->getISBN() << endl;
+        LfileW << livre1->getPublicConcerne() << endl;
+        LfileW << livre1->getEtat() << endl;
+        LfileW << livre1->getProprietaire()->getCode() << endl;
+        LfileW << livre1->getAttributSpe() << endl;
+    }
+    cout << nbLivres << " livres enregistrés" << endl;
+    cout << "Toutes les données sont enregistrées" << endl;
 }

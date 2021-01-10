@@ -99,7 +99,8 @@ void menu(){
             menuCreer();
             break;
         case 1001:
-            break;
+            save(listeBiblio, &nbBiblio, listeAdherent, &nbAdherent);
+            return;
         default:
             cout << endl <<  "Choix invalide." << endl;
     }
@@ -212,36 +213,36 @@ void creerLivre(Bibliotheque* bibliotheque){
         string illustration;
         cout << "Illustration :" << endl;
         cin >> illustration;
-        Album album(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, illustration);
-        bibliotheque->ajoutLivre(&album);
+        auto* album = new Album(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, illustration);
+        bibliotheque->ajoutLivre(album);
     }
     else if (choix == 2){
         string dessinateur;
         cout << "Dessinateur :" << endl;
         cin >> dessinateur;
-        BandeDessinee bd(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, dessinateur);
-        bibliotheque->ajoutLivre(&bd);
+        auto* bd = new BandeDessinee(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, dessinateur);
+        bibliotheque->ajoutLivre(bd);
     }
     else if (choix == 3) {
         string siecle;
         cout << "Siècle :" << endl;
         cin >> siecle;
-        PieceTheatre pt(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, siecle);
-        bibliotheque->ajoutLivre(&pt);
+        auto* pt = new PieceTheatre(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, siecle);
+        bibliotheque->ajoutLivre(pt);
     }
     else if (choix == 4) {
         string indicateur;
         cout << "Indicateur :" << endl;
         cin >> indicateur;
-        RecueilPoesie rp(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, indicateur);
-        bibliotheque->ajoutLivre(&rp);
+        auto* rp = new RecueilPoesie(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, indicateur);
+        bibliotheque->ajoutLivre(rp);
     }
     else if (choix == 5) {
         string genre;
         cout << "Genre :" << endl;
         cin >> genre;
-        Roman rom(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, genre);
-        bibliotheque->ajoutLivre(&rom);
+        auto* rom = new Roman(code, titre, auteur, editeur, ISBN, publicconcerne, "Libre", bibliotheque, genre);
+        bibliotheque->ajoutLivre(rom);
     }
     else {
         cout << endl << "Choix invalide." << endl;
@@ -311,8 +312,8 @@ void menuCreer(){
         cin >> adresse;
         cout << "Code :" << endl;
         cin >> code;
-        Bibliotheque bibli(nom, adresse, code);
-        listeBiblio[nbBiblio] = &bibli;
+        auto* bibli = new Bibliotheque(nom, adresse, code);
+        listeBiblio[nbBiblio] = bibli;
         nbBiblio = nbBiblio + 1;
     }
     else if (choix == 2){
@@ -334,8 +335,8 @@ void menuCreer(){
         cin >> nbEmprunt;
         cout << "Danq quelle bibliothèque est-il inscrit ?" << endl;
         auto* bibliotheque = choose<Bibliotheque>(listeBiblio, nbBiblio);
-        Adherent adherent(nom, prenom, adresse, numero, bibliotheque, nbEmprunt);
-        listeAdherent[nbAdherent] = &adherent;
+        auto* adherent = new Adherent(nom, prenom, adresse, numero, bibliotheque, nbEmprunt);
+        listeAdherent[nbAdherent] = adherent;
         nbAdherent = nbAdherent + 1;
     }
     else {

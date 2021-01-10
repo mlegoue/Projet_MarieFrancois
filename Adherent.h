@@ -77,6 +77,14 @@ public:
 
     void affiche();
 
+    Livre** getEmprunts(){
+        return tab;
+    }
+
+    int getEmpruntsLength(){
+        return nbLivres;
+    }
+
 };
 
 #endif //PROJETC__MARIEFRANCOIS_ADHERENT_H
