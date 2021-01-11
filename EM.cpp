@@ -169,6 +169,7 @@ void save(Bibliotheque** BIBLIO, const int* nbBiblio, Adherent** ADHER, const in
     cout << *nbAdher << " adhérents enregistrés" << endl;
     int nbLivres = 0;
     ofstream BfileW (Bfile_name);
+    ofstream LfileW (Lfile_name);
     for(int i = 0; i<*nbBiblio; i++){
         Bibliotheque* biblio1 = BIBLIO[i];
         BfileW << biblio1->getNom() << endl;
@@ -179,35 +180,21 @@ void save(Bibliotheque** BIBLIO, const int* nbBiblio, Adherent** ADHER, const in
         nbLivres += tabLength;
         BfileW << tabLength << endl;
         for(int j = 0; j<tabLength; j++){
+            Livre* livre1 = tab[j];
             BfileW << tab[j]->getCode() << endl;
+            LfileW << livre1->getCategorie() << endl;
+            LfileW << livre1->getCode() << endl;
+            LfileW << livre1->getTitre() << endl;
+            LfileW << livre1->getAuteur() << endl;
+            LfileW << livre1->getEditeur() << endl;
+            LfileW << livre1->getISBN() << endl;
+            LfileW << livre1->getPublicConcerne() << endl;
+            LfileW << livre1->getEtat() << endl;
+            LfileW << livre1->getProprietaire()->getCode() << endl;
+            LfileW << livre1->getAttributSpe() << endl;
         }
     }
     cout << *nbBiblio << " bibliothèques enregistrées" << endl;
-    Livre* LIVRES[nbLivres];
-    int ind = 0;
-    for(int i = 0; i<*nbBiblio; i++){
-        Bibliotheque* biblio1 = BIBLIO[i];
-        Livre** tab = biblio1->getLivres();
-        int tabLength = biblio1->getNbLivre();
-        for(int j = 0; j<tabLength; j++){
-            LIVRES[ind] = tab[j];
-            ind++;
-        }
-    }
-    ofstream LfileW (Lfile_name);
-    for(int i = 0; i<nbLivres; i++){
-        Livre* livre1 = LIVRES[i];
-        LfileW << livre1->getCategorie() << endl;
-        LfileW << livre1->getCode() << endl;
-        LfileW << livre1->getTitre() << endl;
-        LfileW << livre1->getAuteur() << endl;
-        LfileW << livre1->getEditeur() << endl;
-        LfileW << livre1->getISBN() << endl;
-        LfileW << livre1->getPublicConcerne() << endl;
-        LfileW << livre1->getEtat() << endl;
-        LfileW << livre1->getProprietaire()->getCode() << endl;
-        LfileW << livre1->getAttributSpe() << endl;
-    }
     cout << nbLivres << " livres enregistrés" << endl;
     cout << "Toutes les données sont enregistrées" << endl;
 }
