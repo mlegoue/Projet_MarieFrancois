@@ -67,7 +67,7 @@ public:
 
     void rendre();
 
-    void affiche();
+    friend ostream& operator<<(ostream &out, Bibliotheque& biblio);
 };
 
 

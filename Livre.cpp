@@ -15,6 +15,10 @@ Livre::Livre(const string& c, const string& t, const string& a,  const string& e
     proprietaire = b;
 }
 
-void Livre::affiche() {
-    cout << "Code = " << code << " ; Titre = " << titre << " ; Auteur = " << auteur << " ; Éditeur = " << editeur << " ; ISBN = " << ISBN << " ; Public concerné = " << publicconcerne << " ; État = " << etat << " ; Propriétaire = " << proprietaire->getNom() << endl;
+ostream& Livre::affiche(ostream& out) {
+    return out << "Code = " << code << " ; Titre = " << titre << " ; Auteur = " << auteur << " ; Éditeur = " << editeur << " ; ISBN = " << ISBN << " ; Public concerné = " << publicconcerne << " ; État = " << etat << " ; Propriétaire = " << proprietaire->getNom();
+}
+
+ostream& operator<<(ostream &out, Livre& livre) {
+    return livre.affiche(out);
 }

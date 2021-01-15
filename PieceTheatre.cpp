@@ -5,7 +5,7 @@ PieceTheatre::PieceTheatre(const string& c, const string& t, const string& a,  c
     siecle = s;
 };
 
-void PieceTheatre::affiche() {
-    Livre::affiche();
-    cout << " ; Siècle = " << siecle << endl;
+ostream& PieceTheatre::affiche(ostream& out) {
+    Livre::affiche(out);
+    return out << " ; Siècle = " << siecle;
 }

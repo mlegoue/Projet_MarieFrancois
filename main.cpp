@@ -23,6 +23,7 @@ void menuBiblio();
 void menuAdherent();
 void menuCreer();
 void creerLivre(Bibliotheque* biblio);
+void choixAfficheCategorie(Bibliotheque* biblio);
 
 
 int main() {
@@ -111,8 +112,7 @@ template <typename Object>
 Object* choose(Object** tab, int nb){
     int choix = 0;
     for (int i = 0; i < nb; ++i) {
-        cout << i << ") ";
-        (*tab[i]).affiche();
+        cout << i << ") " << *tab[i] << endl;
     }
     cout << "Votre choix : ";
     cin >> choix;
@@ -129,10 +129,11 @@ void menuBiblio(){
     cout << endl;
     cout << "=== Que voulez-vous faire ? ===" << endl;
     cout << "0) Afficher" << endl;
-    cout << "1) Ajouter un livre" << endl;
-    cout << "2) Supprimer un livre" << endl;
-    cout << "3) Emprunter à une autre bibliothèque" << endl;
-    cout << "4) Rendre les livres" << endl;
+    cout << "1) Afficher par categorie" << endl;
+    cout << "2) Ajouter un livre" << endl;
+    cout << "3) Supprimer un livre" << endl;
+    cout << "4) Emprunter à une autre bibliothèque" << endl;
+    cout << "5) Rendre les livres" << endl;
 
     cout << "Votre choix : ";
     cin >> choix;
@@ -140,15 +141,18 @@ void menuBiblio(){
 
     switch(choix){
         case 0:
-            biblio->affiche();
+            cout << *biblio << endl;
             biblio->afficherLivres();
             menu();
             break;
         case 1:
+            choixAfficheCategorie(biblio);
+            break;
+        case 2:
             creerLivre(biblio);
             menu();
             break;
-        case 2: {
+        case 3: {
             cout << endl;
             cout << "=== Quel livre voulez-vous supprimer ? ===" << endl;
             auto *livre = choose<Livre>(biblio->getLivres(), biblio->getNbLivre());
@@ -156,7 +160,7 @@ void menuBiblio(){
             menu();
             break;
         }
-        case 3: {
+        case 4: {
             cout << endl;
             cout << "=== A quelle bibliothèque voulez-vous emprunter ? ===" << endl;
             auto* bibliotheque = choose<Bibliotheque>(listeBiblio, nbBiblio);
@@ -167,7 +171,7 @@ void menuBiblio(){
             menu();
             break;
         }
-        case 4:
+        case 5:
             biblio->rendre();
             menu();
             break;
@@ -176,6 +180,39 @@ void menuBiblio(){
         default:
             cout << endl <<  "Choix invalide." << endl;
     }
+}
+
+void choixAfficheCategorie(Bibliotheque* bibliotheque){
+    int choix = 0;
+    cout << endl;
+    cout << "=== Quelle catégorie ? ===" << endl;
+    cout << "1) Album" << endl;
+    cout << "2) Bande Dessinée" << endl;
+    cout << "3) Pièce de théâtre" << endl;
+    cout << "4) Recueil de Poésie" << endl;
+    cout << "5) Roman" << endl;
+    cout << "Votre choix : ";
+    cin >> choix;
+    if (choix == 1){
+        bibliotheque->afficherParCategorie("Album");
+    }
+    else if (choix == 2){
+        bibliotheque->afficherParCategorie("Bande Dessinée");
+    }
+    else if (choix == 3) {
+        bibliotheque->afficherParCategorie("Pièce de théâtre");
+    }
+    else if (choix == 4) {
+        bibliotheque->afficherParCategorie("Recueil de Poésie");
+    }
+    else if (choix == 5) {
+        bibliotheque->afficherParCategorie("Roman");
+    }
+    else {
+        cout << endl << "Choix invalide." << endl;
+    }
+    menu();
+
 }
 
 void creerLivre(Bibliotheque* bibliotheque){
@@ -199,13 +236,13 @@ void creerLivre(Bibliotheque* bibliotheque){
     cout << "Code :" << endl;
     cin >> code;
     cout << "Titre :" << endl;
-    cin >> titre;
+    getline(cin >> ws, titre);
     cout << "Auteur :" << endl;
-    cin >> auteur;
+    getline(cin >> ws, auteur);
     cout << "Editeur :" << endl;
-    cin >> editeur;
+    getline(cin >> ws, editeur);
     cout << "Public concerné :" << endl;
-    cin >> publicconcerne;
+    getline(cin >> ws, publicconcerne);
     cout << "ISBN :" << endl;
     cin >> strISBN;
     int ISBN = std::stoi( strISBN );
@@ -267,7 +304,7 @@ void menuAdherent(){
 
     switch(choix){
         case 0:
-            adherent->affiche();
+            cout << *adherent << endl;
             adherent->afficherLivres();
             menu();
             break;
@@ -307,9 +344,9 @@ void menuCreer(){
         string adresse;
         string code;
         cout << "Nom :" << endl;
-        cin >> nom;
+        getline(cin >> ws, nom);
         cout << "Adresse :" << endl;
-        cin >> adresse;
+        getline(cin >> ws, adresse);
         cout << "Code :" << endl;
         cin >> code;
         auto* bibli = new Bibliotheque(nom, adresse, code);
@@ -324,11 +361,11 @@ void menuCreer(){
         Bibliotheque* b;
         int nbEmprunt;
         cout << "Nom :" << endl;
-        cin >> nom;
+        getline(cin >> ws, nom);
         cout << "Prénom :" << endl;
-        cin >> prenom;
+        getline(cin >> ws, prenom);
         cout << "Adresse :" << endl;
-        cin >> adresse;
+        getline(cin >> ws, adresse);
         cout << "Numéro d'adhérent :" << endl;
         cin >> numero;
         cout << "Nombre d'emprunts :" << endl;

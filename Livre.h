@@ -92,7 +92,9 @@ public:
         return "Livre";
     }
 
-    virtual void affiche();
+    virtual ostream& affiche(ostream& out);
+
+    friend ostream& operator<< (ostream& out, Livre& livre);
 
     virtual string getAttributSpe() = 0;
 

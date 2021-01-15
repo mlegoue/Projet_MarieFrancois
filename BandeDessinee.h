@@ -25,7 +25,7 @@ public:
         return "Bande Dessinée";
     }
 
-    void affiche();
+    ostream& affiche(ostream& out);
 
     string getAttributSpe() {
         return dessinateur;

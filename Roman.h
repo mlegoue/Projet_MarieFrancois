@@ -25,7 +25,7 @@ public:
         return "Roman";
     }
 
-    void affiche();
+    ostream& affiche(ostream& out);
 
     string getAttributSpe() {
         return genre;

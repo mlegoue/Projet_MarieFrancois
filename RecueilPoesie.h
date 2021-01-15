@@ -25,7 +25,7 @@ public:
         return "Recueil de Poésie";
     }
 
-    void affiche();
+    ostream& affiche(ostream& out);
 
     string getAttributSpe() {
         return indicateur;

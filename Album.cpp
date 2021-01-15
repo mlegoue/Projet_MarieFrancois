@@ -5,7 +5,9 @@ Album::Album(const string& c, const string& t, const string& a,  const string& e
     illustration = illu;
 };
 
-void Album::affiche() {
-    Livre::affiche();
-    cout << " ; Illustration = " << illustration << endl;
+ostream& Album::affiche(ostream& out) {
+    Livre::affiche(out);
+    return out << " ; Illustration = " << illustration << endl;
 }
+
+

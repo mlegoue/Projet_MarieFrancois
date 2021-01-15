@@ -5,7 +5,7 @@ Roman::Roman(const string& c, const string& t, const string& a,  const string& e
     genre = g;
 };
 
-void Roman::affiche() {
-    Livre::affiche();
-    cout << " ; Genre = " << genre << endl;
+ostream& Roman::affiche(ostream& out) {
+    Livre::affiche(out);
+    return out << " ; Genre = " << genre << endl;
 }

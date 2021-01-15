@@ -22,10 +22,10 @@ public:
     }
 
     string getCategorie() {
-        return "Pièce de théatre";
+        return "Pièce de théâtre";
     }
 
-    void affiche();
+    ostream& affiche(ostream& out);
 
     string getAttributSpe() {
         return siecle;

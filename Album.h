@@ -25,7 +25,7 @@ public:
         return "Album";
     }
 
-    void affiche();
+    ostream& affiche(ostream& out);
 
     string getAttributSpe() {
         return illustration;

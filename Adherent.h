@@ -75,7 +75,8 @@ public:
 
     void rendre(const string &code);
 
-    void affiche();
+    friend ostream& operator<<(ostream &out, Adherent& adherent);
+
 
     Livre** getEmprunts(){
         return tab;

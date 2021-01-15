@@ -5,8 +5,8 @@ BandeDessinee::BandeDessinee(const string& c, const string& t, const string& a, 
     dessinateur = d;
 };
 
-void BandeDessinee::affiche() {
-    Livre::affiche();
-    cout << " ; Dessinateur = " << dessinateur << endl;
+ostream& BandeDessinee::affiche(ostream& out) {
+    Livre::affiche(out);
+    return out << " ; Dessinateur = " << dessinateur << endl;
 }
 

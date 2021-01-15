@@ -5,7 +5,7 @@ RecueilPoesie::RecueilPoesie(const string& c, const string& t, const string& a, 
     indicateur = indic;
 };
 
-void RecueilPoesie::affiche() {
-    Livre::affiche();
-    cout << " ; Indicateur = " << indicateur << endl;
+ostream& RecueilPoesie::affiche(ostream& out) {
+    Livre::affiche(out);
+    return out << " ; Indicateur = " << indicateur << endl;
 }

@@ -14,20 +14,26 @@ Adherent::Adherent(const string& n, const string& p, const string& a,  int num, 
 }
 
 void Adherent::emprunter(const string& c){
-    Livre* livre = this->getBibliotheque()->trouverLivre(c);
-    if (livre->getEtat() == "Prêté"){
-        cout << "Ce livre est déjà emprunté !" << endl;
-    }
-    else {
-        if (nbEmprunts == nbLivres) {
-            cout << "Vous avez atteint votre nombre maximum d'emprunts !" << endl;
+    try{
+        Livre* livre = this->getBibliotheque()->trouverLivre(c);
+        if (livre->getEtat() == "Prêté"){
+            cout << "Ce livre est déjà emprunté !" << endl;
         }
         else {
-            livre->setEtat("Prêté");
-            tab[nbLivres] = livre;
-            nbLivres = nbLivres + 1;
+            if (nbEmprunts == nbLivres) {
+                cout << "Vous avez atteint votre nombre maximum d'emprunts !" << endl;
+            }
+            else {
+                livre->setEtat("Prêté");
+                tab[nbLivres] = livre;
+                nbLivres = nbLivres + 1;
+            }
         }
     }
+    catch (...) {
+        cout << "Livre non trouvé" << endl;
+    }
+
 };
 
 void Adherent::rendre(const string& c){
@@ -56,10 +62,12 @@ void Adherent::rendre(const string& c){
 void Adherent::afficherLivres() {
     for(int i = 0; i < nbLivres; ++i)
     {
-        (*tab[i]).affiche();
+        cout << *tab[i] << endl;
     }
 }
 
-void Adherent::affiche() {
-    cout << "Nom = " << nom << " ; Prénom = " << prenom << " ; Adresse = " << adresse << " ; Numéro = " << numero << " ; Bibliothèque = " << bibliotheque->getNom() << " ; Nombre d'emprunts = " << nbEmprunts << endl;
+ostream& operator<<(ostream& out, Adherent &adherent) {
+    return out << "Nom = " << adherent.nom << " ; Prénom = " << adherent.prenom << " ; Adresse = " << adherent.adresse << " ; Numéro = " << adherent.numero << " ; Bibliothèque = " << adherent.bibliotheque->getNom() << " ; Nombre d'emprunts = " << adherent.nbEmprunts;
 }
+
+
