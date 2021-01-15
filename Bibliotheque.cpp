@@ -24,7 +24,7 @@ void Bibliotheque::ajoutLivre(Livre* livre) {
 void Bibliotheque::afficherLivres() {
     for(int i = 0; i < nbLivre; ++i)
     {
-        (*tab[i]).affiche();
+        cout << *tab[i] << endl;
     }
 }
 
@@ -32,7 +32,7 @@ void Bibliotheque::afficherParCategorie(const string& categorie) {
     for(int i = 0; i < nbLivre; ++i)
     {
         if ((*tab[i]).getCategorie() == categorie) {
-            std::cout << "Code : " << (*tab[i]).getCode() << " Titre : " << (*tab[i]).getTitre() << std::endl;
+            cout << *tab[i] << endl;
         }
     }
 }
@@ -50,7 +50,9 @@ void Bibliotheque::supprimerLivre(const string &c) {
             tab[i] = tab[i+1];
         }
     }
-    nbLivre = nbLivre - 1;
+    if (trouve) {
+        nbLivre = nbLivre - 1;
+    }
     if(nbLivre <= lengthL - 10){
         this->changeTab(lengthL - 10);
     }
@@ -62,6 +64,7 @@ Livre* Bibliotheque::trouverLivre(const string &c) {
             return tab[i];
         }
     }
+    throw 0;
 }
 
 Livre* Bibliotheque::trouverLivre(int isbn) {
@@ -70,18 +73,25 @@ Livre* Bibliotheque::trouverLivre(int isbn) {
             return tab[i];
         }
     }
+    throw 0; // livre non trouvé
 }
 
 void Bibliotheque::emprunter(int i, Bibliotheque* biblio) {
-    Livre* livre = biblio->trouverLivre(i);
-    if (livre->getEtat() == "Libre") {
-        biblio->supprimerLivre(livre->getCode());
-        this->ajoutLivre(livre);
-        livre->setEtat("Emprunté");
+    try {
+        Livre* livre = biblio->trouverLivre(i);
+        if (livre->getEtat() == "Libre") {
+            biblio->supprimerLivre(livre->getCode());
+            this->ajoutLivre(livre);
+            livre->setEtat("Emprunté");
+        }
+        else {
+            cout << "Ce livre est emprunté par un adhérent !" << endl;
+        }
     }
-    else {
-        cout << "Ce livre est emprunté par un adhérent !" << endl;
+    catch (...) {
+        cout << "Exception : livre non trouvé" << endl ;
     }
+
 }
 
 void Bibliotheque::rendre() {
@@ -105,6 +115,8 @@ void Bibliotheque::changeTab(int newL){
     tab = newTab;
 }
 
-void Bibliotheque::affiche(){
-    cout << "Nom = " << nom << " ; Prénom = "  << adresse << " ; Code = "<< code << endl;
+
+ostream& operator<<(ostream &out, Bibliotheque &biblio) {
+    return out << "Nom = " << biblio.nom << " ; Adresse = " << biblio.adresse << " ; Code = " << biblio.code;
 }
+
