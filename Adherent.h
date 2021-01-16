@@ -86,6 +86,8 @@ public:
         return nbLivres;
     }
 
+    ~Adherent();
+
 };
 
 #endif //PROJETC__MARIEFRANCOIS_ADHERENT_H

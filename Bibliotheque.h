@@ -68,6 +68,8 @@ public:
     void rendre();
 
     friend ostream& operator<<(ostream &out, Bibliotheque& biblio);
+
+    ~Bibliotheque();
 };
 
 

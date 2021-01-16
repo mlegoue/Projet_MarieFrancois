@@ -70,4 +70,7 @@ ostream& operator<<(ostream& out, Adherent &adherent) {
     return out << "Nom = " << adherent.nom << " ; Prénom = " << adherent.prenom << " ; Adresse = " << adherent.adresse << " ; Numéro = " << adherent.numero << " ; Bibliothèque = " << adherent.bibliotheque->getNom() << " ; Nombre d'emprunts = " << adherent.nbEmprunts;
 }
 
+Adherent::~Adherent(){
+    delete [] tab ;
+}
 

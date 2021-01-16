@@ -120,3 +120,7 @@ ostream& operator<<(ostream &out, Bibliotheque &biblio) {
     return out << "Nom = " << biblio.nom << " ; Adresse = " << biblio.adresse << " ; Code = " << biblio.code;
 }
 
+Bibliotheque::~Bibliotheque(){
+    delete [] tab ;
+}
+

@@ -22,3 +22,14 @@ ostream& Livre::affiche(ostream& out) {
 ostream& operator<<(ostream &out, Livre& livre) {
     return livre.affiche(out);
 }
+
+Livre::~Livre(){
+    code.clear();
+    titre.clear();
+    auteur.clear();
+    editeur.clear();
+    ISBN = 0;
+    publicconcerne.clear();
+    etat.clear();
+    proprietaire = NULL;
+}

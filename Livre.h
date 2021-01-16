@@ -98,6 +98,8 @@ public:
 
     virtual string getAttributSpe() = 0;
 
+    virtual ~Livre();
+
 };
 
 
