@@ -1,0 +1,50 @@
+Bande Dessinée
+0000
+Les aventures de Tintin
+Hergé
+Le petit Vingtième
+0
+Tout public
+Prêté
+13001
+Hergé
+Recueil de Poésie
+2345
+Recueil
+Baudelaire
+Les éditions Laffont
+2345
+Adulte
+Libre
+13001
+vers
+Roman
+3456
+Madame Bovary
+Flaubert
+Revue de Paris
+3456
+Adulte
+Libre
+13001
+Classique
+Album
+5678
+Album photo
+Pierre Dupont
+Édition 3
+4567
+Ados
+Libre
+13013
+Photo
+Album
+5679
+Album d'illustrations
+Jacques
+Édition 2
+4567
+Ados
+Libre
+13013
+Dessins
