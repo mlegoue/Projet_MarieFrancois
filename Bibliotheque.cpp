@@ -121,6 +121,7 @@ ostream& operator<<(ostream &out, Bibliotheque &biblio) {
 }
 
 Bibliotheque::~Bibliotheque(){
-    delete [] tab ;
+    if(!tab)
+        delete [] tab ;
 }
 

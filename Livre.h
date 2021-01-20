@@ -88,17 +88,13 @@ public:
         this->proprietaire = proprietaire;
     }
 
-    virtual string getCategorie() {
-        return "Livre";
-    }
+    virtual string getCategorie() = 0;
 
     virtual ostream& affiche(ostream& out);
 
     friend ostream& operator<< (ostream& out, Livre& livre);
 
     virtual string getAttributSpe() = 0;
-
-    virtual ~Livre();
 
 };
 
